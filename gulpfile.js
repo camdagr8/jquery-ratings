@@ -72,9 +72,9 @@ gulp.task('sass', function() {
     return gulp.src(config.src+config.sass+"/*.scss")
         .pipe(sourcemaps.init())
 		.pipe(sass().on('error', sass.logError))
-		.pipe(sourcemaps.write())
 		.pipe(autoprefixer())
         .pipe(gulp.dest(config.src+config.css))
+		.pipe(sourcemaps.write())
 		.pipe(gulp.dest(config.dist+config.css))
         .pipe(browserSync.stream());
 });
