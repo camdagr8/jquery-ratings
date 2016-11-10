@@ -41,14 +41,18 @@ The initial value of the ratings.
 # Methods
 Method | Parameters | Description
 -------|------------|-------------
-disable|silent (Boolean)|Sets the configuration property `enabled` to false. Triggers the ratings:disabled event. Specifying `silent` to true will prevent the event trigger.
-enable|silent (Boolean)|Sets the configuration property `enabled` to true. Triggers the ratings:enabled event. Specifying `silent` to true will prevent the event trigger.
+disable|silent (Boolean)|Sets the configuration property `enabled` to false. Triggers the `ratings:disabled` event. Specifying `silent` to true will prevent the event trigger.
+enable|silent (Boolean)|Sets the configuration property `enabled` to true. Triggers the `ratings:enabled` event. Specifying `silent` to true will prevent the event trigger.
 get|property (String)|Retrieved the specified configuration property.
-max|value (Number), silent (Boolean)|Sets the configuration property `max`. Triggers the ratings:update and ratings:update.max events. Specifying `silent` to true will prevent the event triggers.
-value|value (Number), silent (Boolean)|Set the configuration property `value`. Triggers the ratings:update and ratings:update.value events. Specifying `silent` to true will prevent the event triggers.
+max|value (Number), silent (Boolean)|Sets the configuration property `max`. Triggers the `ratings:update` and ratings:update.max events. Specifying `silent` to true will prevent the event triggers.
+value|value (Number), silent (Boolean)|Set the configuration property `value`. Triggers the `ratings:update` and ratings:update.value events. Specifying `silent` to true will prevent the event triggers.
 
 
-
+### disable
+```javascript
+$('#my-ratings').on('ratings:disabled', function () { console.log('#my-ratings disabled'); });
+$('#my-ratings').ratings('disable');
+```
 
 # Examples
 [View on CODEPEN](http://codepen.io/team/ResourceAmmirati/pen/KNdZWZ)
