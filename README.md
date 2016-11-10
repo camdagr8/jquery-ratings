@@ -1,11 +1,11 @@
 # jQuery Ratings
-jQuery Rating Plugin that can be configured via data- attributes or JavaScript.
+Plugin that can be configured via data- attributes or JavaScript.
 [See it in action!](http://codepen.io/team/ResourceAmmirati/pen/KNdZWZ)
 
 [Quick Start](#quick-start) | [Configuration](#configuration) | [Methods](#methods) | [Events](#events)
 
 # Quick Start
-By default, the plugin will find any elements that have the data-ratings attribute.
+By default, the plugin will find any elements that have the `data-ratings` attribute.
 
 ```html
 <div>
@@ -15,13 +15,13 @@ By default, the plugin will find any elements that have the data-ratings attribu
 
 
 # Configuration
-The configuration object accepts the following properties.
+The configuration object accepts the following properties:
 
 Property | Type	| Default
 ---------|------|--------
 [enabled](#enabled-boolean)|Boolean|true
 [max](#max-number)|Number|5
-[icons](#icons-object)|Object|
+[icons](#icons-object)|Object|{"empty": "[SVG]", "full": "[SVG]"}
 [value](#value-number)|Number|0
 
 
@@ -68,7 +68,7 @@ Sets the configuration property `enabled` to true. Triggers the `ratings:enabled
 
 ```javascript
 $('#my-ratings').on('ratings:enabled', function () { console.log('#my-ratings enabled'); });
-$('#my-ratings').ratings('enabled');
+$('#my-ratings').ratings('enable');
 ```
 
 ### get
@@ -91,6 +91,8 @@ $('#my-ratings').ratings('max', 6);
 ### value
 #### value (Number)
 #### silent (Boolean) Call without triggering events.
+Sets the configuration property `value`. Triggers the `ratings:update` and ratings:update.value events. Specifying `silent` to true will prevent the event triggers.
+
 
 ```javascript
 $('#my-ratings').ratings('value', 3);
