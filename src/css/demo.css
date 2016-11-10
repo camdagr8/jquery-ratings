@@ -43,3 +43,8 @@ button:active {
 	color: grey;
 	opacity: 0.5;
 }
+
+[data-stars].disabled {
+	color: red;
+	cursor: default;
+}

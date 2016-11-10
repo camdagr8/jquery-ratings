@@ -13,9 +13,6 @@
   color: yellow;
   -webkit-transition: color .5s;
   transition: color .5s; }
-  [data-stars].disabled {
-    color: red;
-    cursor: default; }
   [data-stars] svg {
     width: 30px;
     height: 30px;
