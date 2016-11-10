@@ -1,0 +1,23 @@
+body {
+	background-color: #222;
+	padding: 50px;
+	line-height: 1;
+}
+
+button {
+	display: inline;
+	border: 1px solid #333;
+	background-color: #444;
+	color: #FCFCFC;
+	width: 100px;
+	padding: 10px 15px;
+}
+
+button:active {
+	border: 1px solid #444;
+	background-color: #555;
+}
+
+.mt-20 {
+	margin-top: 20px;
+}

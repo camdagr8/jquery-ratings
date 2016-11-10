@@ -1,0 +1,30 @@
+[data-stars] {
+  width: 0;
+  height: 0;
+  opacity: 0;
+  display: inline-block;
+  position: relative;
+  white-space: nowrap;
+  user-select: none;
+  cursor: pointer;
+  color: yellow;
+  transition: color .5s;
+
+  &.disabled {
+    color: red;
+    cursor: default;
+  }
+
+  svg {
+    width:  30px;
+    height: 30px;
+    fill: currentColor;
+  }
+
+  .stars-empty,
+  .stars-full {
+    position: absolute;
+    color: inherit;
+    overflow: hidden;
+  }
+}
