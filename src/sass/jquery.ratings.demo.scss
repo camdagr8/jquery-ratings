@@ -37,18 +37,20 @@ button:active {
 
 .rating-text {
 	line-height: 38px;
+	user-select: none;
 }
 
-[data-stars].green {
-	color: green;
-}
+[data-ratings] {
+	&.green {
+		color: green;
 
-[data-stars].green .stars-empty {
-	color: grey;
-	opacity: 0.5;
-}
+		.ratings-empty {
+			color: grey;
+			opacity: 0.5;
+		}
+	}
 
-[data-stars].disabled {
-	color: red;
-	cursor: default;
+	&.disabled {
+		cursor: default;
+	}
 }

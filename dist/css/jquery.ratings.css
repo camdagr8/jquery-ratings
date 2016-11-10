@@ -12,7 +12,6 @@
   color: yellow;
   -webkit-transition: color .5s;
   transition: color .5s;
-  margin-right: 5px;
   vertical-align: top; }
   [data-ratings] svg {
     width: 30px;

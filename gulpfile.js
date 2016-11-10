@@ -59,10 +59,7 @@ gulp.task('watch', [
  * --------------------
  */
 gulp.task('js', function () {
-	return gulp.src([
-		config.src+config.js+'/*.js',
-		'!'+config.src+config.js+'/demo.js'
-		])
+	return gulp.src([config.src+config.js+'/*.js'])
 		.pipe(gulp.dest(config.dist+config.js));
 });
 
