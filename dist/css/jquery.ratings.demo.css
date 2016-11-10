@@ -30,6 +30,7 @@ button:active {
   margin-top: 20px; }
 
 .rating-text {
+  padding-left: 10px;
   line-height: 38px;
   -webkit-user-select: none;
      -moz-user-select: none;
