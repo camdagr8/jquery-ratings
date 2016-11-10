@@ -73,9 +73,9 @@ gulp.task('sass', function() {
         .pipe(sourcemaps.init())
 		.pipe(sass().on('error', sass.logError))
 		.pipe(autoprefixer())
-        .pipe(gulp.dest(config.src+config.css))
+        .pipe(gulp.dest(config.dist+config.css))
 		.pipe(sourcemaps.write())
-		.pipe(gulp.dest(config.dist+config.css))
+		.pipe(gulp.dest(config.src+config.css))
         .pipe(browserSync.stream());
 });
 
