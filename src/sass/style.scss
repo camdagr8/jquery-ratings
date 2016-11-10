@@ -3,12 +3,13 @@
   height: 0;
   opacity: 0;
   display: inline-block;
-  position: relative;
   white-space: nowrap;
   user-select: none;
   cursor: pointer;
   color: yellow;
   transition: color .5s;
+  margin-right: 5px;
+  vertical-align: top;
 
   svg {
     width:  30px;
@@ -18,8 +19,10 @@
 
   .ratings-empty,
   .ratings-full {
+    display: inline;
     position: absolute;
     color: inherit;
     overflow: hidden;
+    vertical-align: top;
   }
 }

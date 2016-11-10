@@ -3,22 +3,26 @@
   $.fn.ratings = function(action, params) {
     var ns = {
 
-      enable: function (elms) {
+      enable: function (elms, silent) {
         elms.each(function () {
           $(this).removeClass('disabled');
-          $(this).trigger('ratings:enabled', [this.__ratings]);
+		  if (silent !== true) {
+			$(this).trigger('ratings:enabled', [this.__ratings]);
+		  }
         });
 
-        return ns.set(elms, 'enabled', true);
+        return ns.set(elms, 'enabled', true, silent);
       },
 
-      disable: function (elms) {
+      disable: function (elms, silent) {
         elms.each(function () {
           $(this).addClass('disabled');
-          $(this).trigger('ratings:disabled', [this.__ratings]);
+		  if (silent !== true) {
+			$(this).trigger('ratings:disabled', [this.__ratings]);
+		  }
         });
 
-        return ns.set(elms, 'enabled', false);
+        return ns.set(elms, 'enabled', false, silent);
       },
 
       draw: function (elm) {
@@ -54,6 +58,7 @@
       },
 
       rate: function (elm, e, silent) {
+
         // 0.0 - Get the configuration -> exit if none
         var conf = elm.__ratings;
         if (typeof conf === 'undefined') { return; }
@@ -69,11 +74,11 @@
             v = Number((Math.round(v * 2) / 2).toFixed(1));
 
         // 2.1 - Set the new value
-        $(elm).ratings('value', v);
+        $(elm).ratings('value', v, true);
 
         // 3.0 - Trigger the change event
 		if (silent !== true) {
-		  $(elm).trigger('ratings:change', [conf, v]);
+		  $(elm).trigger('ratings:change', [v]);
 		}
       },
 
@@ -115,8 +120,10 @@
           this.__ratings = $.extend(defaults, action);
 		  this.__ratings = $.extend(this.__ratings, d);
 
+		  // 0.2 - Localize the configuration object
           var conf = this.__ratings;
 
+		  // 1.0 - Get the icon templates
 		  var exp = new RegExp(/<\/?[\w\s="/.':;#-\/\?]+>/gi);
           var ratingsEmpty 	= (exp.test(conf.icons.empty) === true) ? conf.icons.empty 	: $(this).find(conf.icons.empty).html();
 		  var ratingsFull 	= (exp.test(conf.icons.full) === true) 	? conf.icons.full 	: $(this).find(conf.icons.full).html();
@@ -124,12 +131,13 @@
           this.__ratings.icons.empty = ratingsEmpty;
           this.__ratings.icons.full  = ratingsFull;
 
+		  // 2.0 - Draw the UI
           ns.draw(this);
 
+		  // 3.0 - Apply interactive listener
           $(this).on('mousemove', ns.onMouseMove);
           $(this).on('mouseout', ns.onMouseOut);
           $(this).on('mouseup', ns.onMouseUp);
-
         });
       },
 
@@ -158,7 +166,7 @@
         ns.rate($(this)[0], e);
       },
 
-      set: function (elms, property, newValue) {
+      set: function (elms, property, newValue, silent) {
         return elms.each(function () {
           this.__ratings[property] = newValue;
 
@@ -173,19 +181,21 @@
             ns.draw(this);
           }
 
-          $(this).trigger("ratings:update", [this.__ratings]);
-          $(this).trigger("ratings:update."+property, [this.__ratings]);
+		  if (silent !== true) {
+			$(this).trigger("ratings:update", [this.__ratings]);
+			$(this).trigger("ratings:update."+property, [this.__ratings]);
+		  }
         });
       }
     };
 
     switch (action) {
 	  case 'disable':
-        return ns.disable(this);
+        return ns.disable(this, params);
         break;
 
       case 'enable':
-        return ns.enable(this);
+        return ns.enable(this, params);
         break;
 
 	  case 'get':
@@ -193,11 +203,11 @@
 		break;
 
       case 'max':
-        return ns.set(this, 'max', params);
+        return ns.set(this, 'max', params, arguments[2]);
         break;
 
       case 'value':
-        return ns.set(this, 'value', params);
+        return ns.set(this, 'value', params, arguments[2]);
         break;
 
       default:

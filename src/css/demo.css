@@ -35,11 +35,15 @@ button:active {
 	margin-top: 20px;
 }
 
-.green {
+.rating-text {
+	line-height: 38px;
+}
+
+[data-stars].green {
 	color: green;
 }
 
-.green .stars-empty {
+[data-stars].green .stars-empty {
 	color: grey;
 	opacity: 0.5;
 }

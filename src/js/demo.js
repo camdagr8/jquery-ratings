@@ -33,4 +33,14 @@ $(function() {
 		$(this).text('value ' + lbl);
 	});
 
+	$('#ratings-3').on('ratings:change', function (e, v) {
+		v = v.toFixed(1);
+		$(this).parents().find('.rating-text').text(v);
+	});
+
+	var ratingLbl = $('#ratings-3').parents().find('.rating-text');
+	if (ratingLbl.length > 0) {
+		ratingLbl.text($('#ratings-3').ratings('get', 'value').toFixed(1));
+	}
+
 });

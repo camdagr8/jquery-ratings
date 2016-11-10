@@ -3,7 +3,6 @@
   height: 0;
   opacity: 0;
   display: inline-block;
-  position: relative;
   white-space: nowrap;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -12,13 +11,17 @@
   cursor: pointer;
   color: yellow;
   -webkit-transition: color .5s;
-  transition: color .5s; }
+  transition: color .5s;
+  margin-right: 5px;
+  vertical-align: top; }
   [data-ratings] svg {
     width: 30px;
     height: 30px;
     fill: currentColor; }
   [data-ratings] .ratings-empty,
   [data-ratings] .ratings-full {
+    display: inline;
     position: absolute;
     color: inherit;
-    overflow: hidden; }
+    overflow: hidden;
+    vertical-align: top; }
