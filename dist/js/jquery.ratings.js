@@ -26,10 +26,11 @@
 
         var conf = elm.__star;
 
-        var contFull    = $('<span class="stars-full" />').appendTo($(elm));
         var contEmpty   = $('<span class="stars-empty" />').appendTo($(elm));
-        var countFull   = Math.ceil(conf.value);
-        var countEmpty  = conf.max - countFull;
+		var contFull    = $('<span class="stars-full" />').appendTo($(elm));
+
+		var countEmpty  = conf.max - countFull;
+	    var countFull   = Math.ceil(conf.value);
 
         for (var i = 0; i < conf.max; i++) {
           contEmpty.append(conf.star.empty);
