@@ -1,7 +1,10 @@
 # jQuery Ratings
 jQuery Rating Plugin that can be configured via data- attributes or JavaScript.
+[See it in action!](http://codepen.io/team/ResourceAmmirati/pen/KNdZWZ)
 
-# Getting Started
+[Quick Start](#quick-start) | [Configuration](#configuration) | [Methods](#methods) | [Events](#events)
+
+# Quick Start
 By default, the plugin will find any elements that have the data-ratings attribute.
 
 ```html
@@ -9,6 +12,9 @@ By default, the plugin will find any elements that have the data-ratings attribu
 	<span id="ratings-1" data-ratings='{"max": 5, "value": 0}'></span>
 </div>
 ```
+
+
+
 
 # Configuration
 The configuration object accepts the following properties.
@@ -41,11 +47,11 @@ The initial value of the ratings.
 # Methods
 Method | Parameters | Description
 -------|------------|-------------
-disable|silent (Boolean)|Sets the configuration property `enabled` to false.
-enable|silent (Boolean)|Sets the configuration property `enabled` to true. Triggers the `ratings:enabled` event. Specifying `silent` to true will prevent the event trigger.
-get|property (String)|Retrieves the specified configuration property.
-max|value (Number), silent (Boolean)|Sets the configuration property `max`.
-value|value (Number), silent (Boolean)|Set the configuration property `value`. Triggers the `ratings:update` and ratings:update.value events. Specifying `silent` to true will prevent the event triggers.
+[disable](#disable)|silent (Boolean)|Sets the configuration property `enabled` to false.
+[enable](#enable)|silent (Boolean)|Sets the configuration property `enabled` to true. Triggers the `ratings:enabled` event. Specifying `silent` to true will prevent the event trigger.
+[get](#get)|property (String)|Retrieves the specified configuration property.
+[max](#max)|value (Number), silent (Boolean)|Sets the configuration property `max`.
+[value](#value)|value (Number), silent (Boolean)|Set the configuration property `value`. Triggers the `ratings:update` and ratings:update.value events. Specifying `silent` to true will prevent the event triggers.
 
 
 ### disable
@@ -80,7 +86,7 @@ console.log($('#my-ratings').ratings('get', 'value'));
 Sets the configuration property `max`. Triggers the `ratings:update` and ratings:update.max events. Specifying `silent` to true will prevent the event triggers.
 
 ```javascript
-console.log($('#my-ratings').ratings('max', 6));
+$('#my-ratings').ratings('max', 6);
 ```
 
 ### value
@@ -88,7 +94,7 @@ console.log($('#my-ratings').ratings('max', 6));
 #### silent (Boolean) Call without triggering events.
 
 ```javascript
-console.log($('#my-ratings').ratings('value', 3));
+$('#my-ratings').ratings('value', 3);
 ```
 
 
