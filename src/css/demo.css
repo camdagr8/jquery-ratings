@@ -5,6 +5,18 @@ body {
 	color: white;
 }
 
+a, p {
+	color: white;
+}
+
+a:link {
+	text-decoration: none;
+}
+a:hover {
+	color: white;
+	text-decoration: underline;
+}
+
 button {
 	display: inline;
 	border: 1px solid #333;
@@ -21,4 +33,13 @@ button:active {
 
 .mt-20 {
 	margin-top: 20px;
+}
+
+.green {
+	color: green;
+}
+
+.green .stars-empty {
+	color: grey;
+	opacity: 0.5;
 }
