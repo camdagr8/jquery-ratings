@@ -13,11 +13,13 @@ By default, the plugin will find any elements that have the data-ratings attribu
 # Configuration
 The configuration object accepts the following properties.
 
-### enabled *
-Type	| 	Default
---------|---------------
-Boolean	| true
+Property | Type	| Default
+---------|------|--------
+enabled|Boolean|true
 
+
+##### enabled
+Determines if the ratings are clickable/draggable. Default: true
 
 # Examples
 [View on CODEPEN](http://codepen.io/team/ResourceAmmirati/pen/KNdZWZ)
