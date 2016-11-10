@@ -14,8 +14,6 @@ By default, the plugin will find any elements that have the data-ratings attribu
 ```
 
 
-
-
 # Configuration
 The configuration object accepts the following properties.
 
@@ -43,6 +41,7 @@ HTML string or selector that points to an element to use as the template. This v
 ### value (Number)
 The initial value of the ratings.
 
+[Quick Start](#quick-start) | [Configuration](#configuration) | [Methods](#methods) | [Events](#events)
 
 # Methods
 Method | Parameters | Description
@@ -96,9 +95,23 @@ $('#my-ratings').ratings('max', 6);
 ```javascript
 $('#my-ratings').ratings('value', 3);
 ```
+[Quick Start](#quick-start) | [Configuration](#configuration) | [Methods](#methods) | [Events](#events)
 
+# Events
 
+### ratings:change
+Triggered after calling the [value](#value) method. Passes the new value to the callback.
 
+### ratings:enabled
+Triggered after calling the [enable](#enable) method. Passes the configuration object to the callback.
+
+### ratings:disabled
+Triggered after calling the [disable](#disable) method. Passes the configuration object to the callback.
+
+### ratings:update
+Triggered after calling the [max](#max) or [value](#value) method. Passes the configuration object to the callback.
+
+[Quick Start](#quick-start) | [Configuration](#configuration) | [Methods](#methods) | [Events](#events)
 
 # Examples
 [View on CODEPEN](http://codepen.io/team/ResourceAmmirati/pen/KNdZWZ)
