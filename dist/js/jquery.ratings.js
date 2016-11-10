@@ -93,7 +93,7 @@
 
         var per = conf.value / conf.max;
         var w = per * contEmpty.innerWidth();
-            w = Math.floor(w);
+            w = Math.ceil(w);
 
         $(elm).css({opacity: 1});
 
