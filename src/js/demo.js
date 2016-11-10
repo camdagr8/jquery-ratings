@@ -16,8 +16,10 @@ $(function() {
 		var max = elm.stars('get', 'max');
 			max = (max === 5) ? 10 : 5;
 
+		var lbl = (max === 10) ? 5 : 10;
+
 		elm.stars('max', max);
-		$(this).text('max ' + elm.stars('get', 'max'));
+		$(this).text('max ' + lbl);
 	});
 
 	$('#val-toggler').on('click', function () {
@@ -25,8 +27,10 @@ $(function() {
 		var val = elm.stars('get', 'value');
 			val = (val === 5) ? 0 : 5;
 
+		var lbl = (val === 0) ? 5 : 0;
+
 		elm.stars('value', val);
-		$(this).text('value ' + elm.stars('get', 'value'));
+		$(this).text('value ' + lbl);
 	});
 
 });
