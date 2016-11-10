@@ -53,7 +53,7 @@
         });
       },
 
-      rate: function (elm, e) {
+      rate: function (elm, e, silent) {
         // 0.0 - Get the configuration -> exit if none
         var conf = elm.__star;
         if (typeof conf === 'undefined') { return; }
@@ -72,7 +72,9 @@
         $(elm).stars('value', v);
 
         // 3.0 - Trigger the change event
-        $(elm).trigger('stars:change', [conf, v]);
+		if (silent !== true) {
+		  $(elm).trigger('stars:change', [conf, v]);
+		}
       },
 
       resize: function (elm) {
@@ -137,7 +139,7 @@
         var conf = $(this)[0].__star;
         if (conf.enabled !== true) { return; }
 
-        ns.rate($(this)[0], e);
+        ns.rate($(this)[0], e, true);
       },
 
       onMouseOut: function (e) {
