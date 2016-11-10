@@ -15,10 +15,10 @@ The configuration object accepts the following properties.
 
 Property | Type	| Default
 ---------|------|--------
-enabled|Boolean|true
-max|Number|5
-icons|Object|
-value|Number|0
+[enabled](#enabled-boolean)|Boolean|true
+[max](#max-number)|Number|5
+[icons](#icons-object)|Object|
+[value](#value-number)|Number|0
 
 
 ### enabled (Boolean)
@@ -79,9 +79,18 @@ console.log($('#my-ratings').ratings('get', 'value'));
 #### silent (Boolean) Call without triggering events.
 Sets the configuration property `max`. Triggers the `ratings:update` and ratings:update.max events. Specifying `silent` to true will prevent the event triggers.
 
+```javascript
+console.log($('#my-ratings').ratings('max', 6));
+```
+
 ### value
 #### value (Number)
 #### silent (Boolean) Call without triggering events.
+
+```javascript
+console.log($('#my-ratings').ratings('value', 3));
+```
+
 
 
 
