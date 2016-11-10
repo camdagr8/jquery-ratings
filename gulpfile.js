@@ -24,7 +24,7 @@ var config = {
 	assets 			: '/assets',
 	css 			: '/css',
 	sass 			: '/sass',
-	style 			: 'style.css',
+	style 			: 'jquery.ratings.css',
 
 	js 				: '/js'
 };
