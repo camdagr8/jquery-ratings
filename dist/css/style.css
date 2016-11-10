@@ -1,4 +1,4 @@
-[data-stars] {
+[data-ratings] {
   width: 0;
   height: 0;
   opacity: 0;
@@ -13,12 +13,12 @@
   color: yellow;
   -webkit-transition: color .5s;
   transition: color .5s; }
-  [data-stars] svg {
+  [data-ratings] svg {
     width: 30px;
     height: 30px;
     fill: currentColor; }
-  [data-stars] .stars-empty,
-  [data-stars] .stars-full {
+  [data-ratings] .ratings-empty,
+  [data-ratings] .ratings-full {
     position: absolute;
     color: inherit;
     overflow: hidden; }

@@ -1,4 +1,4 @@
-[data-stars] {
+[data-ratings] {
   width: 0;
   height: 0;
   opacity: 0;
@@ -16,8 +16,8 @@
     fill: currentColor;
   }
 
-  .stars-empty,
-  .stars-full {
+  .ratings-empty,
+  .ratings-full {
     position: absolute;
     color: inherit;
     overflow: hidden;

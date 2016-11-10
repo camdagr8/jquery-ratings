@@ -1,12 +1,12 @@
 (function($) {
 
-  $.fn.stars = function(action, params) {
+  $.fn.ratings = function(action, params) {
     var ns = {
 
       enable: function (elms) {
         elms.each(function () {
           $(this).removeClass('disabled');
-          $(this).trigger('stars:enabled', [this.__star]);
+          $(this).trigger('ratings:enabled', [this.__ratings]);
         });
 
         return ns.set(elms, 'enabled', true);
@@ -15,7 +15,7 @@
       disable: function (elms) {
         elms.each(function () {
           $(this).addClass('disabled');
-          $(this).trigger('stars:disabled', [this.__star]);
+          $(this).trigger('ratings:disabled', [this.__ratings]);
         });
 
         return ns.set(elms, 'enabled', false);
@@ -24,17 +24,17 @@
       draw: function (elm) {
         $(elm).html('');
 
-        var conf = elm.__star;
+        var conf = elm.__ratings;
 
-        var contEmpty   = $('<span class="stars-empty" />').appendTo($(elm));
-		var contFull    = $('<span class="stars-full" />').appendTo($(elm));
+        var contEmpty   = $('<span class="ratings-empty" />').appendTo($(elm));
+		var contFull    = $('<span class="ratings-full" />').appendTo($(elm));
 
 		var countEmpty  = conf.max - countFull;
 	    var countFull   = Math.ceil(conf.value);
 
         for (var i = 0; i < conf.max; i++) {
-          contEmpty.append(conf.star.empty);
-          contFull.append(conf.star.full);
+          contEmpty.append(conf.icons.empty);
+          contFull.append(conf.icons.full);
         }
 
         var per = conf.value / conf.max;
@@ -55,7 +55,7 @@
 
       rate: function (elm, e, silent) {
         // 0.0 - Get the configuration -> exit if none
-        var conf = elm.__star;
+        var conf = elm.__ratings;
         if (typeof conf === 'undefined') { return; }
 
         // 1.0 - Get the x position mouse
@@ -69,20 +69,20 @@
             v = Number((Math.round(v * 2) / 2).toFixed(1));
 
         // 2.1 - Set the new value
-        $(elm).stars('value', v);
+        $(elm).ratings('value', v);
 
         // 3.0 - Trigger the change event
 		if (silent !== true) {
-		  $(elm).trigger('stars:change', [conf, v]);
+		  $(elm).trigger('ratings:change', [conf, v]);
 		}
       },
 
       resize: function (elm) {
-        var conf = elm.__star;
+        var conf = elm.__ratings;
         if (typeof conf === 'undefined') { return; }
 
-        var contEmpty = $(elm).find('.stars-empty');
-        var contFull  = $(elm).find('.stars-full');
+        var contEmpty = $(elm).find('.ratings-empty');
+        var contFull  = $(elm).find('.ratings-full');
 
         if (contFull.length < 1 || contEmpty.length < 1) { return; }
 
@@ -102,7 +102,7 @@
           var defaults = {
             enabled   : true,
             max       : 5,
-            star      : {
+            icons 	  : {
               empty   : '<svg width="32" height="32" viewBox="0 0 32 32"><path d="M16 23l9 6-4-10 9-6h-10l-4-10-4 10h-10l9 6-4 10 9-6zM16 21.753l-6.8 4.547 3.2-7.7-7.2-4.6h7.5l3.3-8.5 3.3 8.5h7.5l-7.2 4.6 3.2 7.7-6.8-4.547z"></path></svg>',
               full    : '<svg width="32" height="32" viewBox="0 0 32 32"><path d="M16 23l-9 6 4-10-9-6h10l4-10 4 10h10l-9 6 4 10z"></path></svg>'
             },
@@ -110,19 +110,19 @@
           };
 
           // 0.1 - Get passed parameters
-          var d  = $(this).data('stars');
+          var d  = $(this).data('ratings');
 
-          this.__star = $.extend(defaults, action);
-		  this.__star = $.extend(this.__star, d);
+          this.__ratings = $.extend(defaults, action);
+		  this.__ratings = $.extend(this.__ratings, d);
 
-          var conf = this.__star;
+          var conf = this.__ratings;
 
 		  var exp = new RegExp(/<\/?[\w\s="/.':;#-\/\?]+>/gi);
-          var starEmpty = (exp.test(conf.star.empty) === true) 	? conf.star.empty 	: $(this).find(conf.star.empty).html();
-		  var starFull 	= (exp.test(conf.star.full) === true) 	? conf.star.full 	: $(this).find(conf.star.full).html();
+          var ratingsEmpty 	= (exp.test(conf.icons.empty) === true) ? conf.icons.empty 	: $(this).find(conf.icons.empty).html();
+		  var ratingsFull 	= (exp.test(conf.icons.full) === true) 	? conf.icons.full 	: $(this).find(conf.icons.full).html();
 
-          this.__star.star.empty = starEmpty;
-          this.__star.star.full = starFull;
+          this.__ratings.icons.empty = ratingsEmpty;
+          this.__ratings.icons.full  = ratingsFull;
 
           ns.draw(this);
 
@@ -136,7 +136,7 @@
       onMouseMove: function (e) {
         if (e.buttons < 1) { return; }
 
-        var conf = $(this)[0].__star;
+        var conf = $(this)[0].__ratings;
         if (conf.enabled !== true) { return; }
 
         ns.rate($(this)[0], e, true);
@@ -145,14 +145,14 @@
       onMouseOut: function (e) {
         if (e.buttons < 1) { return; }
 
-        var conf = $(this)[0].__star;
+        var conf = $(this)[0].__ratings;
         if (conf.enabled !== true) { return; }
 
         ns.rate($(this)[0], e);
       },
 
       onMouseUp: function (e) {
-        var conf = $(this)[0].__star;
+        var conf = $(this)[0].__ratings;
         if (conf.enabled !== true) { return; }
 
         ns.rate($(this)[0], e);
@@ -160,21 +160,21 @@
 
       set: function (elms, property, newValue) {
         return elms.each(function () {
-          this.__star[property] = newValue;
+          this.__ratings[property] = newValue;
 
 		  if (property === 'max') {
-			this.__star.value = Math.min(this.__star.value, this.__star.max);
+			this.__ratings.value = Math.min(this.__ratings.value, this.__ratings.max);
 		  }
 
           if (property === 'value') {
-			this.__star.value = Math.min(this.__star.value, this.__star.max);
+			this.__ratings.value = Math.min(this.__ratings.value, this.__ratings.max);
             ns.resize(this);
           } else {
             ns.draw(this);
           }
 
-          $(this).trigger("stars:update", [this.__star]);
-          $(this).trigger("stars:update."+property, [this.__star]);
+          $(this).trigger("ratings:update", [this.__ratings]);
+          $(this).trigger("ratings:update."+property, [this.__ratings]);
         });
       }
     };
@@ -189,7 +189,7 @@
         break;
 
 	  case 'get':
-		return this[0].__star[params];
+		return this[0].__ratings[params];
 		break;
 
       case 'max':
@@ -205,6 +205,6 @@
     }
   };
 
-  $('[data-stars]').stars();
+  $('[data-ratings]').ratings();
 
 }(window.jQuery));
