@@ -50,7 +50,7 @@ Method | Parameters | Description
 [enable](#enable)|silent (Boolean)|Sets the configuration property `enabled` to true.
 [get](#get)|property (String)|Retrieves the specified configuration property.
 [max](#max)|value (Number), silent (Boolean)|Sets the configuration property `max`.
-[redraw](#redraw)||Redraws the ratings UI.
+[redraw](#redraw)|silent (Boolean)|Redraws the ratings UI.
 [value](#value)|value (Number), silent (Boolean)|Set the configuration property `value`.
 
 
@@ -90,6 +90,7 @@ $('#my-ratings').ratings('max', 6);
 ```
 
 ### redraw
+#### silent (Boolean) Call without triggering events.
 Clears the HTML of the rating and redraws it. Trigges the `ratings:redrawn` event. Specifying `silent` to true will prevent the event trigger.
 
 ```javascript
