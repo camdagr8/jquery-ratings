@@ -7,14 +7,12 @@ Plugin that can be configured via data- attributes or JavaScript.
 # Quick Start
 By default, the plugin will find any elements that have the `data-ratings` attribute.
 
-  ![Default setup](https://dl.dropboxusercontent.com/s/nyyi14dcfxdgbna/ss.jquery.ratings.png)
-
 ```html
 <div>
 	<span id="ratings-1" data-ratings='{"max": 5, "value": 0}'></span>
 </div>
 ```
-
+  ![Default setup](https://dl.dropboxusercontent.com/s/nyyi14dcfxdgbna/ss.jquery.ratings.png)
 
 # Configuration
 The configuration object accepts the following properties:
