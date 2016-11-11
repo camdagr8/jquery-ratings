@@ -47,10 +47,11 @@ The initial value of the ratings.
 Method | Parameters | Description
 -------|------------|-------------
 [disable](#disable)|silent (Boolean)|Sets the configuration property `enabled` to false.
-[enable](#enable)|silent (Boolean)|Sets the configuration property `enabled` to true. Triggers the `ratings:enabled` event. Specifying `silent` to true will prevent the event trigger.
+[enable](#enable)|silent (Boolean)|Sets the configuration property `enabled` to true.
 [get](#get)|property (String)|Retrieves the specified configuration property.
 [max](#max)|value (Number), silent (Boolean)|Sets the configuration property `max`.
-[value](#value)|value (Number), silent (Boolean)|Set the configuration property `value`. Triggers the `ratings:update` and ratings:update.value events. Specifying `silent` to true will prevent the event triggers.
+[redraw](#redraw)||Redraws the ratings UI.
+[value](#value)|value (Number), silent (Boolean)|Set the configuration property `value`.
 
 
 ### disable
@@ -88,6 +89,17 @@ Sets the configuration property `max`. Triggers the `ratings:update` and ratings
 $('#my-ratings').ratings('max', 6);
 ```
 
+### redraw
+Clears the HTML of the rating and redraws it. Trigges the `ratings:redrawn` event. Specifying `silent` to true will prevent the event trigger.
+
+```javascript
+$('#my-ratings').on('ratings:redrawn', function () {
+	console.log('#my-ratings redrawn');
+});
+
+$('#my-ratings').ratings('redraw');
+```
+
 ### value
 #### value (Number)
 #### silent (Boolean) Call without triggering events.
@@ -110,6 +122,9 @@ Triggered after calling the [enable](#enable) method. Passes the configuration o
 ### ratings:disabled
 Triggered after calling the [disable](#disable) method. Passes the configuration object to the callback.
 
+### ratings:redrawn
+Triggered after calling the [redraw](#redraw) method. Passes the configuration object to the callback.
+
 ### ratings:update
 Triggered after calling the [max](#max) or [value](#value) method. Passes the configuration object to the callback.
 
@@ -117,5 +132,3 @@ Triggered after calling the [max](#max) or [value](#value) method. Passes the co
 
 # Examples
 [View on CODEPEN](http://codepen.io/team/ResourceAmmirati/pen/KNdZWZ)
-
-
