@@ -6,7 +6,8 @@ Plugin that can be configured via data- attributes or JavaScript.
 
 # Quick Start
 By default, the plugin will find any elements that have the `data-ratings` attribute.
-![Default setup](https://dl.dropboxusercontent.com/s/nyyi14dcfxdgbna/ss.jquery.ratings.png)
+
+  ![Default setup](https://dl.dropboxusercontent.com/s/nyyi14dcfxdgbna/ss.jquery.ratings.png)
 
 ```html
 <div>
