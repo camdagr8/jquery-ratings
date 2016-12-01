@@ -131,7 +131,7 @@
         if (typeof conf === 'undefined') { return; }
 
         // 1.0 - Get the x position mouse
-        var x = e.clientX - elm.offsetLeft;
+		var x = e.pageX - $(elm).offset().left;
 
         // 1.1 - Get the percentage of the element where the click happened
         var p = x / $(elm).outerWidth();
