@@ -19,11 +19,15 @@ The configuration object accepts the following properties:
 
 Property | Type	| Default
 ---------|------|--------
+[allowDecimals](#allowDecimals-boolean)|Boolean|false
 [enabled](#enabled-boolean)|Boolean|true
 [max](#max-number)|Number|5
 [icons](#icons-object)|Object|{"empty": "[SVG]", "full": "[SVG]"}
 [value](#value-number)|Number|0
 
+
+### allowDecimals (Boolean)
+Determines if the ratings will allow halves (.5) values. Default: false.
 
 ### enabled (Boolean)
 Determines if the ratings are clickable/draggable. Default: true.

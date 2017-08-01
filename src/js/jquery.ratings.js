@@ -5,6 +5,7 @@
       enable: function (elms, silent) {
         elms.each(function () {
           $(this).removeClass('disabled');
+		  $(this).attr('aria-disabled', false);
 		  if (silent !== true) {
 			$(this).trigger('ratings:enabled', [this.__ratings]);
 		  }
@@ -16,6 +17,7 @@
       disable: function (elms, silent) {
         elms.each(function () {
           $(this).addClass('disabled');
+		  $(this).attr('aria-disabled', true);
 		  if (silent !== true) {
 			$(this).trigger('ratings:disabled', [this.__ratings]);
 		  }
@@ -31,6 +33,7 @@
 
         var contEmpty   = $('<span class="ratings-empty" />').appendTo($(elm));
 		var contFull    = $('<span class="ratings-full" />').appendTo($(elm));
+
 
 		var countEmpty  = conf.max - countFull;
 	    var countFull   = Math.ceil(conf.value);
@@ -59,17 +62,19 @@
       },
 
 	  init: function (elms, params) {
+
         return elms.each(function () {
 
           // 0.0 - Default config
           var defaults = {
-            enabled   : true,
-            max       : 5,
-            icons 	  : {
-              empty   : '<svg width="32" height="32" viewBox="0 0 32 32"><path d="M16 23l9 6-4-10 9-6h-10l-4-10-4 10h-10l9 6-4 10 9-6zM16 21.753l-6.8 4.547 3.2-7.7-7.2-4.6h7.5l3.3-8.5 3.3 8.5h7.5l-7.2 4.6 3.2 7.7-6.8-4.547z"></path></svg>',
-              full    : '<svg width="32" height="32" viewBox="0 0 32 32"><path d="M16 23l-9 6 4-10-9-6h10l4-10 4 10h10l-9 6 4 10z"></path></svg>'
+			allowDecimals	: false,
+            enabled   		: true,
+            max       		: 5,
+            icons 	  		: {
+              empty   		: '<svg width="32" height="32" viewBox="0 0 32 32"><path d="M16 23l9 6-4-10 9-6h-10l-4-10-4 10h-10l9 6-4 10 9-6zM16 21.753l-6.8 4.547 3.2-7.7-7.2-4.6h7.5l3.3-8.5 3.3 8.5h7.5l-7.2 4.6 3.2 7.7-6.8-4.547z"></path></svg>',
+              full    		: '<svg width="32" height="32" viewBox="0 0 32 32"><path d="M16 23l-9 6 4-10-9-6h10l4-10 4 10h10l-9 6 4 10z"></path></svg>'
             },
-            value     : 0
+            value     		: 0
           };
 
           // 0.1 - Get passed parameters
@@ -96,6 +101,9 @@
           $(this).on('mousemove', ns.onMouseMove);
           $(this).on('mouseout', ns.onMouseOut);
           $(this).on('mouseup', ns.onMouseUp);
+
+		  // 4.0 - Enabled/Disabled
+		  $(this).attr('aria-disabled', !this.__ratings.enabled);
         });
       },
 
@@ -119,6 +127,8 @@
 
       onMouseUp: function (e) {
         var conf = $(this)[0].__ratings;
+		if (!conf) { return; }
+
         if (conf.enabled !== true) { return; }
 
         ns.rate($(this)[0], e);
@@ -138,7 +148,12 @@
 
         // 2.0 - Get the new value
         var v = Number(conf.max * p);
-            v = Number((Math.round(v * 2) / 2).toFixed(1));
+
+		if (conf.allowDecimals === true) {
+			v = Number((Math.round(v * 2) / 2).toFixed(1));
+		} else {
+            v = Number((Math.round(v * 2) / 2).toFixed(0));
+		}
 
         // 2.1 - Set the new value
         $(elm).ratings('value', v, true);
@@ -232,5 +247,9 @@
 
   // Default element query
   $('[data-ratings]').ratings();
+
+  $(window).on('resize', function () {
+	$('[data-ratings]').ratings('redraw');
+  });
 
 }(window.jQuery));
